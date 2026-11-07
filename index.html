@@ -771,13 +771,18 @@ sudo cpupower frequency-set -u 2500000</code></pre>
             <tbody>
               <tr><td><strong>rclone-gdrive.service</strong></td><td>ttolmany / claude</td><td>~/gdrive</td><td>Google Drive FUSE (jkGdrive:) 10GB 캐시</td></tr>
               <tr><td><strong>nohmi-wiki-mount.service</strong></td><td>ttolmany</td><td>~/nohmi_llmwiki</td><td>공동주택관리 위키 전용 FUSE 마운트</td></tr>
-              <tr><td><strong>rag-mcp.service</strong></td><td>ttolmany</td><td>127.0.0.1:8791</td><td>FastMCP 하이브리드 RAG 서버 (모델 상주)</td></tr>
-              <tr><td><strong>session-manager-web.service</strong></td><td>ttolmany</td><td>0.0.0.0:8789</td><td>Antigravity 세션매니저 모바일 웹 서비스</td></tr>
+              <tr><td><strong>jukgap-log.service</strong></td><td>ttolmany</td><td>127.0.0.1:8790</td><td>쭈갑 조행일지 PWA (Tailscale Serve HTTPS :8790)</td></tr>
+              <tr><td><strong>jukgap-log-watch.service</strong></td><td>ttolmany</td><td>내부 데몬</td><td>Hojak 위키 조행기/예약 변경 감시 및 실시간 재빌드</td></tr>
+              <tr><td><strong>session-manager-web.service</strong></td><td>ttolmany</td><td>0.0.0.0:8789</td><td>Antigravity 세션매니저 모바일 웹 (Tailscale 443 프록시)</td></tr>
+              <tr><td><strong>codex-session-bridge.service</strong></td><td>ttolmany (system)</td><td>127.0.0.1:8787</td><td>Codex 터미널 세션 웹 브릿지 인터페이스</td></tr>
               <tr><td><strong>voice-server-agy.service</strong></td><td>ttolmany</td><td>100.88.152.120:8788</td><td>Gemini 기반 헤드리스 음성비서 FastAPI</td></tr>
+              <tr><td><strong>rag-mcp.service</strong></td><td>ttolmany</td><td>127.0.0.1:8791</td><td>FastMCP 하이브리드 RAG 서버 (e5-base 모델 상주)</td></tr>
               <tr><td><strong>antigravity-cli-daemon.service</strong></td><td>ttolmany</td><td>내부 RPC</td><td>AGY Remote Control 상주 데몬</td></tr>
-              <tr><td><strong>Docker Jellyfin</strong></td><td>ttolmany (docker)</td><td>0.0.0.0:8096</td><td>QuickSync 하드웨어 트랜스코딩 영상 서버</td></tr>
+              <tr><td><strong>fishing_server (tmux)</strong></td><td>ttolmany</td><td>0.0.0.0:8000</td><td>낚시 조행기 인터뷰 전용 FastAPI 서버 (uvicorn)</td></tr>
+              <tr><td><strong>Docker Jellyfin</strong></td><td>ttolmany (docker)</td><td>0.0.0.0:8096</td><td>QuickSync 하드웨어 트랜스코딩 영상 미디어 서버</td></tr>
               <tr><td><strong>NFS /mnt/jknas/HDD1</strong></td><td>root (fstab)</td><td>/mnt/jknas/HDD1</td><td>NFSv3 읽기 전용 마운트</td></tr>
-              <tr><td><strong>NFS /mnt/jknas/HDD2</strong></td><td>ttolmany (수동)</td><td>/mnt/jknas/HDD2</td><td>NFSv3 음원/미디어 볼륨 마운트</td></tr>
+              <tr><td><strong>NFS /mnt/jknas/HDD2</strong></td><td>ttolmany (수동)</td><td>/mnt/jknas/HDD2</td><td>NFSv3 미디어/다운로드 볼륨 마운트</td></tr>
+              <tr><td><strong>NFS ~/nas/music-library-v2</strong></td><td>ttolmany (수동)</td><td>~/nas/music-library-v2</td><td>NFSv3 음원 라이브러리 볼륨 마운트</td></tr>
             </tbody>
           </table>
         </div>
