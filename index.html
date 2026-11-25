@@ -748,7 +748,8 @@ sudo cpupower frequency-set -u 2500000</code></pre>
               <tr><td><strong>jknas</strong></td><td class="mono">100.73.158.125</td><td>Linux</td><td>자작 Xpenology NAS (DSM 6.1.5)</td></tr>
               <tr><td><strong>z-fold8</strong></td><td class="mono">100.102.137.70</td><td>Android</td><td>모바일 웹(:8789) 및 음성비서 실사용 단말</td></tr>
               <tr><td><strong>tab-s7</strong></td><td class="mono">100.122.219.29</td><td>Android</td><td>태블릿 보조 단말</td></tr>
-              <tr><td><strong>jk-thinkpad</strong></td><td class="mono">100.65.135.94</td><td>Windows</td><td>WoL 지원 비상 복구 워크스테이션</td></tr>
+              <tr><td><strong>jk-thinkpad</strong></td><td class="mono">100.65.135.94</td><td>Windows</td><td>WoL 지원 비상 복구 워크스테이션 (38:F3:AB:18:67:EB / N100 RDP: 33891)</td></tr>
+              <tr><td><strong>jkeol-desktop-pc</strong></td><td class="mono">100.103.68.15</td><td>Windows</td><td>ASRock 유선LAN (LAN 192.168.1.134, WoL 9C:6B:00:98:0C:8C / N100 RDP: 33890)</td></tr>
               <tr><td>master-gear</td><td class="mono">100.72.201.56</td><td>Windows</td><td>데스크탑 (Offline)</td></tr>
               <tr><td>ttolmany-nomi</td><td class="mono">100.104.81.81</td><td>Linux</td><td>RPi4, 운용 공식 종료 (2026-10-16)</td></tr>
               <tr><td>ttolmany-desktop</td><td class="mono">100.118.68.10</td><td>Linux</td><td>퇴역 기기</td></tr>
@@ -778,6 +779,7 @@ sudo cpupower frequency-set -u 2500000</code></pre>
               <tr><td><strong>voice-server-agy.service</strong></td><td>ttolmany</td><td>100.88.152.120:8788</td><td>Gemini 기반 헤드리스 음성비서 FastAPI</td></tr>
               <tr><td><strong>rag-mcp.service</strong></td><td>ttolmany</td><td>127.0.0.1:8791</td><td>FastMCP 하이브리드 RAG 서버 (e5-base 모델 상주)</td></tr>
               <tr><td><strong>antigravity-cli-daemon.service</strong></td><td>ttolmany</td><td>내부 RPC</td><td>AGY Remote Control 상주 데몬</td></tr>
+              <tr><td><strong>rdp-bridge.service</strong></td><td>ttolmany</td><td>0.0.0.0:33890 / 33891</td><td>듀얼 RDP 중계 (:33890->Desktop, :33891->Laptop)</td></tr>
               <tr><td><strong>fishing_server (tmux)</strong></td><td>ttolmany</td><td>0.0.0.0:8000</td><td>낚시 조행기 인터뷰 전용 FastAPI 서버 (uvicorn)</td></tr>
               <tr><td><strong>Docker Jellyfin</strong></td><td>ttolmany (docker)</td><td>0.0.0.0:8096</td><td>QuickSync 하드웨어 트랜스코딩 영상 미디어 서버</td></tr>
               <tr><td><strong>NFS /mnt/jknas/HDD1</strong></td><td>root (fstab)</td><td>/mnt/jknas/HDD1</td><td>NFSv3 읽기 전용 마운트</td></tr>
