@@ -596,7 +596,7 @@
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab('sop')">⚡ 긴급 복구 SOP</button>
     <button class="tab-btn" onclick="switchTab('inventory')">📋 전수 인벤토리</button>
-    <button class="tab-btn" onclick="switchTab('sessions')">🤖 31개 AI 세션 복원</button>
+    <button class="tab-btn" onclick="switchTab('sessions')">🤖 33개 AI 세션 복원</button>
     <button class="tab-btn" onclick="switchTab('configs')">🛠️ 설정 파일 전문</button>
   </div>
 
@@ -632,10 +632,10 @@ ssh -i ~/.ssh/n100_claude_ed25519 ttolmany@192.168.1.112</code></pre>
     <div class="sop-card">
       <div class="sop-header">
         <span class="sop-tag">SOP-02</span>
-        <span class="sop-title">N100 재부팅 후 전체 설정/마운트/31개 세션 원클릭 자동 복구</span>
+        <span class="sop-title">N100 재부팅 후 전체 설정/마운트/33개 세션 원클릭 자동 복구</span>
       </div>
       <div class="sop-body">
-        <p class="sop-desc">N100이 재부팅된 후 단 한 줄의 명령어로 CPU 클럭, rclone 마운트, NFS, 상주 서비스, tmux 세션 31개를 현재 상태와 100% 동일하게 복구합니다.</p>
+        <p class="sop-desc">N100이 재부팅된 후 단 한 줄의 명령어로 CPU 클럭, rclone 마운트, NFS, 상주 서비스 9종, Tailscale Serve, tmux 세션 33개를 현재 상태와 100% 동일하게 복구합니다.</p>
         <div class="code-block">
           <div class="code-header">
             <span>BASH (N100 터미널)</span>
@@ -644,7 +644,7 @@ ssh -i ~/.ssh/n100_claude_ed25519 ttolmany@192.168.1.112</code></pre>
           <pre><code>bash /home/ttolmany/scripts/n100-reboot-restore.sh</code></pre>
         </div>
         <div class="callout info">
-          <strong>자동 검증 항목:</strong> CPU 2.5GHz 클럭 제한, Linger 활성화, Google Drive/Nohmi FUSE 마운트, /work 심링크 무결성, NFS 마운트, systemd user 서비스 4종, Docker Jellyfin, tmux 31개 작업 세션 일괄 부트스트랩.
+          <strong>자동 검증 항목:</strong> CPU 2.5GHz 클럭 제한, Linger 활성화, Google Drive/Nohmi FUSE 마운트, /work 심링크 무결성, NFS 마운트 3종, systemd user 서비스 8종 + system 1종, Tailscale Serve(443, :8790, /imc, /notify), Docker Jellyfin, tmux 33개 작업 세션 일괄 부트스트랩.
         </div>
       </div>
     </div>
@@ -780,6 +780,7 @@ sudo cpupower frequency-set -u 2500000</code></pre>
               <tr><td><strong>rag-mcp.service</strong></td><td>ttolmany</td><td>127.0.0.1:8791</td><td>FastMCP 하이브리드 RAG 서버 (e5-base 모델 상주)</td></tr>
               <tr><td><strong>antigravity-cli-daemon.service</strong></td><td>ttolmany</td><td>내부 RPC</td><td>AGY Remote Control 상주 데몬</td></tr>
               <tr><td><strong>rdp-bridge.service</strong></td><td>ttolmany</td><td>0.0.0.0:33890 / 33891</td><td>듀얼 RDP 중계 (:33890->Desktop, :33891->Laptop)</td></tr>
+              <tr><td><strong>imc-notify.service</strong></td><td>ttolmany</td><td>내부 워커</td><td>Antigravity IMC Inbox 감시 및 비동기 워커 데몬</td></tr>
               <tr><td><strong>fishing_server (tmux)</strong></td><td>ttolmany</td><td>0.0.0.0:8000</td><td>낚시 조행기 인터뷰 전용 FastAPI 서버 (uvicorn)</td></tr>
               <tr><td><strong>Docker Jellyfin</strong></td><td>ttolmany (docker)</td><td>0.0.0.0:8096</td><td>QuickSync 하드웨어 트랜스코딩 영상 미디어 서버</td></tr>
               <tr><td><strong>NFS /mnt/jknas/HDD1</strong></td><td>root (fstab)</td><td>/mnt/jknas/HDD1</td><td>NFSv3 읽기 전용 마운트</td></tr>
@@ -816,14 +817,14 @@ sudo cpupower frequency-set -u 2500000</code></pre>
     </div>
   </div>
 
-  <!-- [탭 3] 31개 AI 세션 복원 -->
+  <!-- [탭 3] 33개 AI 세션 복원 -->
   <div id="tab-sessions" class="tab-pane">
     <div class="sop-card">
       <div class="sop-header">
-        <span class="sop-title">31개 상시 작업 세션 인벤토리 및 자동 복원 스크립트</span>
+        <span class="sop-title">33개 상시 작업 세션 인벤토리 및 자동 복원 스크립트</span>
       </div>
       <div class="sop-body">
-        <p class="sop-desc">Claude Code(20개), Antigravity CLI(11개), Codex(1개) 세션을 메모리 컨텍스트 유실 없이 복원합니다.</p>
+        <p class="sop-desc">Claude Code(20개), Antigravity CLI(11개), Codex(1개), 보조 API(1개) 세션을 메모리 컨텍스트 유실 없이 복원합니다.</p>
         
         <div class="callout warn">
           <strong>중요:</strong> Claude Code 세션은 경로 기반 슬러그(`-work-SecondBrain-...`)로 메모리를 찾으므로, 반드시 <code>/work -&gt; /home/ttolmany/gdrive/work</code> 심링크가 유지되어야 합니다.
@@ -869,6 +870,7 @@ tmux ls</code></pre>
               <tr><td><strong>claude_tts_gen_dev</strong></td><td>Claude Code</td><td class="mono">~/gdrive/work/SecondBrain</td><td>TTS 음성 생성 모듈 개발</td></tr>
               <tr><td><strong>agy_* (11개 세션)</strong></td><td>Antigravity CLI</td><td class="mono">~/gdrive/work/SecondBrain</td><td>AGY 전용 도메인 작업 세션들</td></tr>
               <tr><td><strong>codex_jknas_music</strong></td><td>Codex CLI</td><td class="mono">/home/ttolmany</td><td>Codex 기반 음악 태깅 작업</td></tr>
+              <tr><td><strong>fishing_interview_api_server</strong></td><td>Python (uvicorn)</td><td class="mono">~/fishing_server</td><td>조행기 인터뷰 전용 백엔드 API (:8000)</td></tr>
             </tbody>
           </table>
         </div>
@@ -957,6 +959,51 @@ RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target</code></pre>
+        </div>
+
+        <!-- rdp-bridge.service -->
+        <div class="code-block">
+          <div class="code-header">
+            <span>~/.config/systemd/user/rdp-bridge.service</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 복사</button>
+          </div>
+          <pre><code>[Unit]
+Description=RDP Port Bridge (33890->Desktop, 33891->Laptop)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u /home/ttolmany/scripts/rdp-bridge.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/ttolmany/scripts/rdp-bridge.log
+StandardError=append:/home/ttolmany/scripts/rdp-bridge.log
+
+[Install]
+WantedBy=default.target</code></pre>
+        </div>
+
+        <!-- imc-notify.service -->
+        <div class="code-block">
+          <div class="code-header">
+            <span>~/.config/systemd/user/imc-notify.service</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 복사</button>
+          </div>
+          <pre><code>[Unit]
+Description=Antigravity IMC Inbox Watcher Daemon
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ttolmany/.gemini/antigravity-cli/scratch/imc-agent
+ExecStart=/usr/bin/python3 /home/ttolmany/.gemini/antigravity-cli/scratch/imc-agent/src/imc/worker.py --watch --interval 30
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target</code></pre>
         </div>
       </div>
     </div>
